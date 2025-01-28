@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * The class Making Change solves a classic problem:
  * given a set of coins, how many ways can you make change for a target amount?
@@ -7,15 +9,25 @@
  */
 
 public class MakingChange {
-    /**
-     * TODO: Complete this function, countWays(), to return the number of ways to make change
-     *  for any given total with any given set of coins.
-     */
     public static long countWays(int target, int[] coins) {
+       int amountOfWays = 0;
+       if (coins.length <= 1){
+           return coins.length;
+       }
 
+       int value = 0;
 
 
 
 
     }
+
+
+    public static int recuriveCall(){
+        while (value != target)
+
+
+    }
+
+
 }
