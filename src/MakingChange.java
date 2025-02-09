@@ -10,28 +10,37 @@ import java.util.ArrayList;
 
 public class MakingChange {
     public static long countWays(int target, int[] coins) {
-        return recursiveCall(target, coins, 0);
+        long[][] arr = new long[target + 1][coins.length];
+
+        for (int i = 0; i <= target; i++) {
+            for (int j = 0; j < coins.length; j++) {
+                arr[i][j] = -1;
+            }
+        }
+
+        return recursiveCall(target, coins, 0, arr);
     }
 
 
-    private static int recursiveCall(int target, int[] coins, int index) {
+    private static long recursiveCall(int target, int[] coins, int index, long[][] arr) {
 
         if (target == 0){
             return 1;
         }
-        if (target < 0){
-            return 0;
-        }
-        if(index >= coins.length){
+        if(index >= coins.length || target < 0){
             return 0;
         }
 
-        int count  = 0;
+        if (arr[target][index] != -1) {
+            return arr[target][index];
+        }
+        long count  = 0;
         // Includes coin
-        count += recursiveCall(target - coins[index], coins, index);
+        count += recursiveCall(target - coins[index], coins, index, arr);
         // Excludes coin
-        count += recursiveCall(target, coins, index + 1);
+        count += recursiveCall(target, coins, index + 1, arr);
 
+        arr[target][index] = count;
         return count;
 
     }
